@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  djangoapp:
+    ports:
+      - "80:5000" # we'll use port 5000 for django
+    environment:
+      - DJANGO_ENV=production
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_PORT=5432
+
+  db:
+    ports:
+      - "5435:5432"  # pointing port 5435 from our environment to postgre default port 5432 in docker
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_DB: 'djangoapp'
+      POSTGRES_PORT: 5432
